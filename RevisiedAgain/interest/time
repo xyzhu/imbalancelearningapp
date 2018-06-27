@@ -1,0 +1,191 @@
+/usr/lib/jvm/java-8-openjdk-amd64/bin/java -javaagent:/home/niubinbin/program/idea-IC-181.4203.550/lib/idea_rt.jar=37365:/home/niubinbin/program/idea-IC-181.4203.550/bin -Dfile.encoding=UTF-8 -classpath /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/charsets.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/cldrdata.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/dnsns.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/icedtea-sound.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/jaccess.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/localedata.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/nashorn.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/sunec.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/sunjce_provider.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/sunpkcs11.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/zipfs.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jce.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jsse.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/management-agent.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/resources.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar:/home/niubinbin/ideaProjects/imbalancelearning/target/classes:/home/niubinbin/ideaProjects/imbalancelearning/lib/weka.jar:/home/niubinbin/.m2/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar:/home/niubinbin/.m2/repository/mysql/mysql-connector-java/5.1.38/mysql-connector-java-5.1.38.jar main.Start
+2018-05-02 03:39:16 - [ INFO ] main.Start.getClassificationResult(Start.java:35) Arff Fold is :FileChange/Arffs_old_paper
+2018-05-02 03:39:16 - [ INFO ] main.Start.getClassificationResult(Start.java:36) LOC Fold is :FileChange/LOCFiles
+2018-05-02 03:39:16 - [ INFO ] main.Start.getClassificationResult(Start.java:37) Calculate cost = true
+2018-05-02 03:39:16 - [ INFO ] main.Start.getClassificationResult(Start.java:38) Resample ratio = 1
+2018-05-02 03:39:16 - [ INFO ] main.Start.getClassificationResult(Start.java:39) Calculate cost from file to hunk is :false
+2018-05-02 03:39:16 - [ INFO ] main.Start.getClassificationResult(Start.java:50) j48 for detail
+2018-05-02 03:39:16 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyAnt
+2018-05-02 03:39:16 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 571
+2018-05-02 03:39:16 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 137
+2018-05-02 03:39:16 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 03:40:24 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:68186
+2018-05-02 03:40:24 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 03:41:32 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:68366
+2018-05-02 03:41:32 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 03:42:41 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:68419
+2018-05-02 03:42:41 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyBuck
+2018-05-02 03:42:41 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 1232
+2018-05-02 03:42:41 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 185
+2018-05-02 03:42:41 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 03:45:11 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:150119
+2018-05-02 03:45:11 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 03:47:41 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:150346
+2018-05-02 03:47:41 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 03:50:12 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:150179
+2018-05-02 03:50:12 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyFlink
+2018-05-02 03:50:12 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 2699
+2018-05-02 03:50:12 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 546
+2018-05-02 03:50:12 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 03:54:23 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:251891
+2018-05-02 03:54:24 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 03:58:38 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:254019
+2018-05-02 03:58:38 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 04:02:51 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:253730
+2018-05-02 04:02:51 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyHadoop
+2018-05-02 04:02:51 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 1864
+2018-05-02 04:02:51 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 243
+2018-05-02 04:02:51 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 04:03:52 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:60863
+2018-05-02 04:03:52 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 04:04:53 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:60783
+2018-05-02 04:04:53 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 04:05:54 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:60567
+2018-05-02 04:05:54 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyItextpdf
+2018-05-02 04:05:54 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 1167
+2018-05-02 04:05:54 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 188
+2018-05-02 04:05:54 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 04:07:10 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:76683
+2018-05-02 04:07:10 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 04:08:27 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:76641
+2018-05-02 04:08:27 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 04:09:44 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:76664
+2018-05-02 04:09:44 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyJedit
+2018-05-02 04:09:44 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 2026
+2018-05-02 04:09:44 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 620
+2018-05-02 04:09:44 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 04:18:55 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:551681
+2018-05-02 04:18:55 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 04:28:07 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:551274
+2018-05-02 04:28:07 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 04:37:19 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:552256
+2018-05-02 04:37:19 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyLucene
+2018-05-02 04:37:19 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 653
+2018-05-02 04:37:19 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 158
+2018-05-02 04:37:19 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 04:39:33 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:134021
+2018-05-02 04:39:33 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 04:41:46 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:133338
+2018-05-02 04:41:46 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 04:43:59 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:132979
+2018-05-02 04:43:59 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MySynapse
+2018-05-02 04:43:59 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 1931
+2018-05-02 04:43:59 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 743
+2018-05-02 04:43:59 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 04:48:14 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:255287
+2018-05-02 04:48:14 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 04:52:30 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:255336
+2018-05-02 04:52:30 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 04:56:45 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:255072
+2018-05-02 04:56:45 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyTomcat
+2018-05-02 04:56:45 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 698
+2018-05-02 04:56:45 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 202
+2018-05-02 04:56:45 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 04:58:40 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:115467
+2018-05-02 04:58:40 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 05:00:36 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:115300
+2018-05-02 05:00:36 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 05:02:31 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:114956
+2018-05-02 05:02:31 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyVoldemort
+2018-05-02 05:02:31 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 519
+2018-05-02 05:02:31 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 151
+2018-05-02 05:02:31 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 05:02:58 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:27169
+2018-05-02 05:02:58 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 05:03:25 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:27159
+2018-05-02 05:03:25 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 05:03:52 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:27148
+2018-05-02 05:03:52 - [ INFO ] main.Start.getClassificationResult(Start.java:50) RF for detail
+2018-05-02 05:03:52 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyAnt
+2018-05-02 05:03:52 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 571
+2018-05-02 05:03:52 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 137
+2018-05-02 05:03:52 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 05:04:56 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:63937
+2018-05-02 05:04:56 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 05:06:00 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:63657
+2018-05-02 05:06:00 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 05:07:04 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:63922
+2018-05-02 05:07:04 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyBuck
+2018-05-02 05:07:04 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 1232
+2018-05-02 05:07:04 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 185
+2018-05-02 05:07:04 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 05:09:10 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:126748
+2018-05-02 05:09:10 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 05:11:17 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:126571
+2018-05-02 05:11:17 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 05:13:24 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:126569
+2018-05-02 05:13:24 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyFlink
+2018-05-02 05:13:24 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 2699
+2018-05-02 05:13:24 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 546
+2018-05-02 05:13:24 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 05:19:52 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:388620
+2018-05-02 05:19:52 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 05:26:25 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:392977
+2018-05-02 05:26:25 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 05:33:00 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:395179
+2018-05-02 05:33:00 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyHadoop
+2018-05-02 05:33:00 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 1864
+2018-05-02 05:33:00 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 243
+2018-05-02 05:33:00 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 05:34:24 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:84025
+2018-05-02 05:34:24 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 05:35:48 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:83984
+2018-05-02 05:35:48 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 05:37:12 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:83860
+2018-05-02 05:37:12 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyItextpdf
+2018-05-02 05:37:12 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 1167
+2018-05-02 05:37:12 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 188
+2018-05-02 05:37:12 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 05:38:52 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:100174
+2018-05-02 05:38:52 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 05:40:33 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:100184
+2018-05-02 05:40:33 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 05:42:13 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:100097
+2018-05-02 05:42:13 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyJedit
+2018-05-02 05:42:13 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 2026
+2018-05-02 05:42:13 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 620
+2018-05-02 05:42:13 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 05:49:53 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:460571
+2018-05-02 05:49:53 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 05:57:33 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:459806
+2018-05-02 05:57:33 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 06:05:13 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:459613
+2018-05-02 06:05:13 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyLucene
+2018-05-02 06:05:13 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 653
+2018-05-02 06:05:13 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 158
+2018-05-02 06:05:13 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 06:06:45 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:92364
+2018-05-02 06:06:45 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 06:08:18 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:92481
+2018-05-02 06:08:18 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 06:09:50 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:92511
+2018-05-02 06:09:50 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MySynapse
+2018-05-02 06:09:50 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 1931
+2018-05-02 06:09:50 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 743
+2018-05-02 06:09:50 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 06:16:18 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:388151
+2018-05-02 06:16:18 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 06:22:43 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:385176
+2018-05-02 06:22:43 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 06:29:08 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:384768
+2018-05-02 06:29:08 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyTomcat
+2018-05-02 06:29:08 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 698
+2018-05-02 06:29:08 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 202
+2018-05-02 06:29:08 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 06:31:08 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:119986
+2018-05-02 06:31:08 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 06:33:08 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:119878
+2018-05-02 06:33:08 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 06:35:08 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:119637
+2018-05-02 06:35:08 - [ INFO ] main.Start.getClassificationResult(Start.java:69) MyVoldemort
+2018-05-02 06:35:08 - [ INFO ] main.Start.getClassificationResult(Start.java:76) Total number of instances in Arff file : 519
+2018-05-02 06:35:08 - [ INFO ] main.Start.getClassificationResult(Start.java:79) Number of buggy instances: 151
+2018-05-02 06:35:08 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:68) RUSBag
+2018-05-02 06:36:18 - [ INFO ] classification.bagging.ResampleInBaggingClassification.getUnderBagClassificationResult(ResampleInBaggingClassification.java:81) Time:70198
+2018-05-02 06:36:18 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:67) RUSMaxBag
+2018-05-02 06:37:28 - [ INFO ] classification.bagging.ResampleInBaggingMaxClassification.getRUSMaxBagClassificationResult(ResampleInBaggingMaxClassification.java:80) Time:70337
+2018-05-02 06:37:28 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:64) RUSVoteBag
+2018-05-02 06:38:38 - [ INFO ] classification.bagging.ResampleInBaggingVoteClassification.getRUSVoteBagClassificationResult(ResampleInBaggingVoteClassification.java:77) Time:70235
+
+Process finished with exit code 0
+
