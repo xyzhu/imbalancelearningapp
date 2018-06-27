@@ -1,0 +1,21 @@
+project, method, recall-1, precision-1, fMeasure-1, auc
+MyAnt,RUSBag, 89.41, 61.82, 73.09,93.13
+
+MyBuck,RUSBag, 85.03, 41.59, 55.85,90.54
+
+MyFlink,RUSBag, 83.17, 50.53, 62.86,90.13
+
+MyHadoop,RUSBag, 99.0, 45.5, 62.34,95.74
+
+MyItextpdf,RUSBag, 82.29, 44.49, 57.75,89.22
+
+MyJedit,RUSBag, 88.46, 71.85, 79.29,93.51
+
+MyLucene,RUSBag, 83.14, 57.55, 68.01,89.98
+
+MySynapse,RUSBag, 92.85, 86.2, 89.4,97.72
+
+MyTomcat,RUSBag, 76.74, 55.89, 64.67,84.32
+
+MyVoldemort,RUSBag, 77.93, 58.41, 66.76,85.08
+

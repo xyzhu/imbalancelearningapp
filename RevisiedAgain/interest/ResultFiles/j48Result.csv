@@ -1,0 +1,41 @@
+project, method, recall-1, precision-1, fMeasure-1, auc
+MyAnt,RUSBag, 89.41, 61.82, 73.09,93.13
+,RUSMaxBag, 63.42, 68.72, 65.89,90.62
+,RUSVoteBag, 86.96, 63.43, 73.35,92.64
+
+MyBuck,RUSBag, 85.03, 41.59, 55.85,90.54
+,RUSMaxBag, 61.22, 45.85, 52.39,87.67
+,RUSVoteBag, 81.58, 43.46, 56.7,89.59
+
+MyFlink,RUSBag, 83.17, 50.53, 62.86,90.13
+,RUSMaxBag, 69.66, 52.75, 60.02,88.16
+,RUSVoteBag, 81.18, 52.12, 63.48,88.78
+
+MyHadoop,RUSBag, 99.0, 45.5, 62.34,95.74
+,RUSMaxBag, 89.25, 52.47, 66.07,95.47
+,RUSVoteBag, 98.5, 46.01, 62.71,94.74
+
+MyItextpdf,RUSBag, 82.29, 44.49, 57.75,89.22
+,RUSMaxBag, 58.17, 47.96, 52.54,86.05
+,RUSVoteBag, 79.53, 46.48, 58.66,88.35
+
+MyJedit,RUSBag, 88.46, 71.85, 79.29,93.51
+,RUSMaxBag, 83.48, 88.62, 85.96,93.24
+,RUSVoteBag, 85.93, 73.5, 79.22,92.86
+
+MyLucene,RUSBag, 83.14, 57.55, 68.01,89.98
+,RUSMaxBag, 57.46, 62.42, 59.78,84.9
+,RUSVoteBag, 80.21, 60.49, 68.95,89.14
+
+MySynapse,RUSBag, 92.85, 86.2, 89.4,97.72
+,RUSMaxBag, 85.62, 94.6, 89.88,97.34
+,RUSVoteBag, 91.69, 86.91, 89.23,97.13
+
+MyTomcat,RUSBag, 76.74, 55.89, 64.67,84.32
+,RUSMaxBag, 49.51, 56.46, 52.7,78.48
+,RUSVoteBag, 72.8, 58.98, 65.15,83.56
+
+MyVoldemort,RUSBag, 77.93, 58.41, 66.76,85.08
+,RUSMaxBag, 71.76, 57.47, 63.8,84.02
+,RUSVoteBag, 76.12, 59.38, 66.7,83.9
+
