@@ -35,16 +35,13 @@ public abstract class MyEvaluation extends Evaluation {
     FastVector cur_predictions = null;
     FastVector crs = null;
     Map<Instance, double[]> ins_actual_predict = null;
-    Map<Instance, List<Integer>> ins_loc = null;
 
-    public MyEvaluation(Instances data, Map<Instance, List<Integer>> ins_loc)
+    public MyEvaluation(Instances data)
             throws Exception {
         super(data);
-        this.ins_loc = ins_loc;
     }
 
     public double areaUnderROC(int classIndex, FastVector predictions) {
-
         // Check if any predictions have been collected
         if (predictions == null) {
             return Instance.missingValue();
@@ -63,120 +60,6 @@ public abstract class MyEvaluation extends Evaluation {
         return 0;
     }
 
-    public double[] getCostEffectiveness() {
-        int total_actual_bug_num = 0;
-        double total_changedLine_num = 0;
-        List<List<Double>> rankTable = new ArrayList<>();
-        List<Instance> instancesList = new ArrayList<>();
-        instancesList.addAll(ins_actual_predict.keySet());
-
-        for (Instance ins : ins_loc.keySet()) {
-            int matchIndex = -1;
-            for (int i = 0; i < instancesList.size(); i++) {
-                if (InstanceUtil.instanceEquel(ins, instancesList.get(i))) {
-                    matchIndex = i;
-                    break;
-                }
-            }
-            if (matchIndex == -1) {
-                logger.error("Error! The mismatch between the instance in ten fold cross validation and the instance "
-                        + "in changedLine");
-                return null;
-            }
-
-            double[] actual_predict = ins_actual_predict.get(instancesList.get(matchIndex));
-            instancesList.remove(matchIndex);
-
-            int changedLine = ins_loc.get(ins).get(INSTANCE_CHANGE_LINE_INDEX);
-            int commit_id = ins_loc.get(ins).get(0);
-            int file_id = ins_loc.get(ins).get(1);
-            total_changedLine_num += changedLine;
-
-            if (actual_predict[0] == 1) {
-                total_actual_bug_num++;
-            }
-            List<Double> actual_predict_change = new ArrayList<Double>();
-            actual_predict_change.add(actual_predict[0]);
-            actual_predict_change.add(actual_predict[1]);
-            actual_predict_change.add((double) changedLine);
-            if (PropertyUtil.CALCULATION_FILE_TO_HUNK_COST) {
-                actual_predict_change.add((double) commit_id);
-                actual_predict_change.add((double) file_id);
-            }
-            rankTable.add(actual_predict_change);
-        }
-        if (PropertyUtil.CALCULATION_FILE_TO_HUNK_COST) {
-            total_actual_bug_num = (int) PropertyUtil.TOTAL_ACTUAL_HUNK_BUG_NUM;
-            total_changedLine_num = PropertyUtil.TOTAL_CHANGED_HUNK_LINE_NUM;
-        }
-        Collections.sort(rankTable, (o1, o2) -> {
-            if (o1.get(1).doubleValue() != o2.get(1).doubleValue()) {
-                return (int) (o2.get(1) - o1.get(1));
-            } else {
-                return (int) (o1.get(2) - o2.get(2));
-            }
-        });
-        double alreadyFind = 0.0;
-        double alreadyCheckLine = 0;
-        for (int i = 0; i < rankTable.size(); i++) {
-            List<Double> actual_predict_change = rankTable.get(i);
-            double findRatio = 0;
-            double x = 0;
-            double upper = 0;
-            if (Math.abs(actual_predict_change.get(0).doubleValue() - 1) < 0.01) {
-                if (PropertyUtil.CALCULATION_FILE_TO_HUNK_COST) {
-                    List<Integer> key = new ArrayList<>();
-                    key.add((int) actual_predict_change.get(3).doubleValue());
-                    key.add((int) actual_predict_change.get(4).doubleValue());
-                    List<List<Integer>> changedLine_isBugs = PropertyUtil.COMMITID_FILEID_CHANGEDLINE_ISBUGS.get(key);
-                    for (List<Integer> changedLine_isBug : changedLine_isBugs) {
-                        alreadyCheckLine += changedLine_isBug.get(0);
-                        if (changedLine_isBug.get(1) == 1) {
-                            alreadyFind += 1;
-                            findRatio = alreadyFind / total_actual_bug_num * 100;
-                            x = alreadyCheckLine / total_changedLine_num * 100;
-                            upper = Math.ceil(x);
-                            costEffectiveness[(int) upper] = findRatio;
-                        }
-                    }
-                } else {
-                    alreadyFind += 1;
-                    alreadyCheckLine += actual_predict_change.get(2);
-                    findRatio = alreadyFind / total_actual_bug_num * 100;
-                    x = alreadyCheckLine / total_changedLine_num * 100;
-                    upper = Math.ceil(x);
-                    costEffectiveness[(int) upper] = findRatio;
-                }
-            } else {
-                if (PropertyUtil.CALCULATION_FILE_TO_HUNK_COST) {
-                    List<Integer> key = new ArrayList<>();
-                    key.add((int) actual_predict_change.get(3).doubleValue());
-                    key.add((int) actual_predict_change.get(4).doubleValue());
-                    List<List<Integer>> changedLine_isBugs = PropertyUtil.COMMITID_FILEID_CHANGEDLINE_ISBUGS.get(key);
-                    for (List<Integer> changedLine_isBug : changedLine_isBugs) {
-                        alreadyCheckLine += changedLine_isBug.get(0);
-                        if (changedLine_isBug.get(1) == 1) {
-                            alreadyFind += 1;
-                            findRatio = alreadyFind / total_actual_bug_num * 100;
-                            x = alreadyCheckLine / total_changedLine_num * 100;
-                            upper = Math.ceil(x);
-                            costEffectiveness[(int) upper] = findRatio;
-                        }
-                    }
-                } else {
-                    alreadyCheckLine += actual_predict_change.get(2);
-                }
-            }
-        }
-
-        // smooth
-        for (int i = 1; i < costEffectiveness.length; i++) {
-            if (costEffectiveness[i] == 0) {
-                costEffectiveness[i] = costEffectiveness[i - 1];
-            }
-        }
-        return costEffectiveness;
-    }
 
     public void setCr(ClassificationResult cr, double num_correct, double num_inst, double numclass1, double num_tp1,
                       double numclass2, double num_tp2, double numPredictClass1, double numPredictClass2, FastVector

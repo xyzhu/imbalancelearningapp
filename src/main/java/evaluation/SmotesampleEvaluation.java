@@ -19,9 +19,8 @@ import dataprocess.ClassificationResult;
 public class SmotesampleEvaluation extends MyEvaluation {
     private static Logger logger = Logger.getLogger(SmotesampleEvaluation.class);
 
-    public SmotesampleEvaluation(Instances data,
-                                 Map<Instance, List<Integer>> ins_Loc) throws Exception {
-        super(data, ins_Loc);
+    public SmotesampleEvaluation(Instances data) throws Exception {
+        super(data);
     }
 
     public void crossValidateModel(Classifier classifier, Instances data,

@@ -15,12 +15,14 @@ import weka.core.Instances;
 public class SimpleClassification extends BasicClassification {
     private static Logger logger = Logger.getLogger(SimpleClassification.class);
 
-    public SimpleClassification(Instances data, Map<Instance, List<Integer>> ins_Loc) {
-        super(data, ins_Loc);
+    public SimpleClassification(Instances data) {
+        super(data);
     }
 
+
+    @Override
     public String getClassificationResult(Classifier classifier,
-                                          String classifier_name, int times) throws Exception {
+                                          String classifier_name, int times, int numFolds) throws Exception {
         if (!PropertyUtil.METHOD_USE_MAP[0][0]) {
             return "";
         }
@@ -32,11 +34,9 @@ public class SimpleClassification extends BasicClassification {
         validationResult = new double[4];
         ratioes = new double[MyEvaluation.COST_EFFECTIVE_RATIO_STEP];
         for (int randomSeed = 1; randomSeed <= times; randomSeed++) {
-            MyEvaluation eval = evaluate(classifier, randomSeed, "none");
+            MyEvaluation eval = evaluate(classifier, randomSeed, "none", numFolds);
             updateResult(validationResult, eval);
-            updateCostEffective(eval, methodName);
         }
-        writeCostEffective(times);
         endTime = System.currentTimeMillis();
         logger.info("Time:" + (endTime - startTime));
         return getResult("," + methodName, classifier_name, validationResult, times);

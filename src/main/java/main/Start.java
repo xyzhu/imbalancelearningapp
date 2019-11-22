@@ -14,11 +14,16 @@ import classification.Classification;
 public class Start {
     private static Logger logger = Logger.getLogger(Start.class);
 
+
     public static void main(String argv[]) throws Exception {
+        SimpleFrame frame = new SimpleFrame();
+        /*
         getClassificationResult(PropertyUtil.LOC_FILE_PATH, PropertyUtil.ARFF_PATH, PropertyUtil.PROJECTS, PropertyUtil
                 .BASE_LEARNERS, 100, true);
+         */
     }
 
+    /*
     private static void getClassificationResult(String locFilePath, String arffPath, String[] projects,
                                                 String[] baseLearners, int times, boolean calcuteCost) throws Exception {
         String predict_result = "";
@@ -93,7 +98,7 @@ public class Start {
                 }
 
                 Classification classification = new Classification(data);
-                predict_result = classification.predict(base, project, times, ins_Loc);
+                predict_result = classification.predict(base, project, times);
                 PrintUtil.appendResult(predict_result, output_file_name);
             }
         }
@@ -151,4 +156,5 @@ public class Start {
         }
         return true;
     }
+    */
 }

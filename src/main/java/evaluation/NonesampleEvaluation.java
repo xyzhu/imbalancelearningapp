@@ -17,9 +17,8 @@ import dataprocess.ClassificationResult;
 public class NonesampleEvaluation extends MyEvaluation {
     private static Logger logger = Logger.getLogger(NonesampleEvaluation.class);
 
-    public NonesampleEvaluation(Instances data,
-                                Map<Instance, List<Integer>> ins_loc) throws Exception {
-        super(data, ins_loc);
+    public NonesampleEvaluation(Instances data) throws Exception {
+        super(data);
     }
 
     public void crossValidateModel(Classifier classifier, Instances data,

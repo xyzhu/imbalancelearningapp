@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
 import util.DataStorageUtil;
 import util.PrintUtil;
 import util.PropertyUtil;
@@ -26,42 +27,41 @@ import evaluation.UndersampleEvaluation;
  */
 public class BasicClassification {
 
+    private Logger logger = Logger.getLogger(BasicClassification.class);
+
     protected Instances data;
     DecimalFormat df;
     public long startTime;
     public long endTime;
-    Map<Instance, List<Integer>> ins_Loc;
     protected double validationResult[] = new double[4];
     public static double[] ratioes;
 
-    public BasicClassification(Instances data, Map<Instance, List<Integer>> ins_Loc) {
+    public BasicClassification(Instances data) {
         this.data = data;
-        this.ins_Loc = ins_Loc;
     }
 
-    public String classify(int times, Classifier classifier, String classifier_name) throws Exception {
+    public String classify(Classifier classifier, String project, String classifier_name, int times, int numFolds) throws Exception {
         String predictResult = getClassificationResult(classifier,
-                classifier_name, times);// get the result without bagging
+                classifier_name, times, numFolds);// get the result without bagging
         return predictResult;
     }
 
     public MyEvaluation evaluate(Classifier classifier, int randomSeed,
-                                 String sample) throws Exception {
-        Random rand;
-        rand = new Random(randomSeed);
+                                 String sample, int numFolds) throws Exception {
+        Random rand = new Random(randomSeed);
         MyEvaluation eval = null;
         if (sample.equals("under")) {
-            eval = new UndersampleEvaluation(data, ins_Loc);
-            eval.crossValidateModel(classifier, data, 10, rand);
+            eval = new UndersampleEvaluation(data);
+            eval.crossValidateModel(classifier, data, numFolds, rand);
         } else if (sample.equals("over")) {
-            eval = new OversampleEvaluation(data, ins_Loc);
-            eval.crossValidateModel(classifier, data, 10, rand);
+            eval = new OversampleEvaluation(data);
+            eval.crossValidateModel(classifier, data, numFolds, rand);
         } else if (sample.equals("smote")) {
-            eval = new SmotesampleEvaluation(data, ins_Loc);
-            eval.crossValidateModel(classifier, data, 10, rand);
+            eval = new SmotesampleEvaluation(data);
+            eval.crossValidateModel(classifier, data, numFolds, rand);
         } else {
-            eval = new NonesampleEvaluation(data, ins_Loc);
-            eval.crossValidateModel(classifier, data, 10, rand);
+            eval = new NonesampleEvaluation(data);
+            eval.crossValidateModel(classifier, data, numFolds, rand);
         }
         return eval;
     }
@@ -98,26 +98,7 @@ public class BasicClassification {
         return;
     }
 
-    public void updateCostEffective(MyEvaluation eval, String methodName_name) throws SQLException {
-        if (!PropertyUtil.CALCULATION_COST) {
-            return;
-        }
-        double[] curCrossVaildCostValue = eval.getCostEffectiveness();
-        for (int i = 0; i < curCrossVaildCostValue.length; i++) {
-            ratioes[i] += curCrossVaildCostValue[i];
-        }
-        DataStorageUtil.method_cost20pbs_skOne_basedOnProject.get(methodName_name).add(curCrossVaildCostValue[20]);
-    }
 
-    public double[] getCostEffective(int times) {
-        if (!PropertyUtil.CALCULATION_COST) {
-            return null;
-        }
-        for (int i = 0; i < ratioes.length; i++) {
-            ratioes[i] /= times;
-        }
-        return ratioes;
-    }
 
     // save the interested result of the classification
     protected String getResultMatrix(Evaluation eval) throws Exception {
@@ -125,17 +106,8 @@ public class BasicClassification {
     }
 
     public String getClassificationResult(Classifier classifier,
-                                          String classifier_name, int times) throws Exception {
+                                          String classifier_name, int times, int numFolds) throws Exception {
         return "";
     }
 
-    protected void writeCostEffective(int times) throws IOException {
-        if (PropertyUtil.CALCULATION_COST) {
-            double[] cost = getCostEffective(times);
-            PrintUtil.appendResult(PrintUtil.arrayStringFormat(cost, PropertyUtil.NUMBER_PRECISION), PropertyUtil
-                    .CUR_COST_EFFECTIVE_RECORD);
-            PrintUtil.appendResult(PrintUtil.formatDouble(PropertyUtil.NUMBER_PRECISION, cost[PropertyUtil.PENCENTAGE_OF_CONCERN]) +
-                    "", PropertyUtil.CUR_COST_EFFECTIVE_RECORD);
-        }
-    }
 }

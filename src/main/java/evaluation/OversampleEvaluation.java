@@ -18,9 +18,8 @@ import dataprocess.ClassificationResult;
 public class OversampleEvaluation extends MyEvaluation {
     private static Logger logger = Logger.getLogger(OversampleEvaluation.class);
 
-    public OversampleEvaluation(Instances data,
-                                Map<Instance, List<Integer>> ins_Loc) throws Exception {
-        super(data, ins_Loc);
+    public OversampleEvaluation(Instances data) throws Exception {
+        super(data);
     }
 
     public void crossValidateModel(Classifier classifier, Instances data,

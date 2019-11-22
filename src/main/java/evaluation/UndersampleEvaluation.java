@@ -18,9 +18,8 @@ import dataprocess.ClassificationResult;
 public class UndersampleEvaluation extends MyEvaluation {
     private static Logger logger = Logger.getLogger(UndersampleEvaluation.class);
 
-    public UndersampleEvaluation(Instances data,
-                                 Map<Instance, List<Integer>> ins_Loc) throws Exception {
-        super(data, ins_Loc);
+    public UndersampleEvaluation(Instances data) throws Exception {
+        super(data);
     }
 
     public void crossValidateModel(Classifier classifier, Instances data,

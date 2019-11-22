@@ -16,26 +16,26 @@ import java.util.Map;
 public class ResampleInBaggingVoteClassification extends BasicClassification {
     public static Logger logger = Logger.getLogger(ResampleInBaggingVoteClassification.class);
 
-    public ResampleInBaggingVoteClassification(Instances data, Map<Instance, List<Integer>> ins_Loc) {
-        super(data, ins_Loc);
+    public ResampleInBaggingVoteClassification(Instances data) {
+        super(data);
     }
 
-    public String getClassificationResult(Classifier classifier, String classifier_name, int times) throws Exception {
+    public String getClassificationResult(Classifier classifier, String classifier_name, int times, int numFolds) throws Exception {
         String predictResult = "";
         if (PropertyUtil.METHOD_USE_MAP[4][1]) {
-            predictResult += getROSVoteBagClassificationResult(classifier, classifier_name, times);
+            predictResult += getROSVoteBagClassificationResult(classifier, classifier_name, times, numFolds);
         }
         if (PropertyUtil.METHOD_USE_MAP[4][2]) {
-            predictResult += getRUSVoteBagClassificationResult(classifier, classifier_name, times);
+            predictResult += getRUSVoteBagClassificationResult(classifier, classifier_name, times, numFolds);
         }
         if (PropertyUtil.METHOD_USE_MAP[4][3]) {
-            predictResult += getSmoteVoteBagClassificationResult(classifier, classifier_name, times);
+            predictResult += getSmoteVoteBagClassificationResult(classifier, classifier_name, times, numFolds);
         }
         return predictResult;
     }
 
     public String getSmoteVoteBagClassificationResult(Classifier classifier,
-                                                     String classifier_name, int times) throws Exception {
+                                                     String classifier_name, int times, int numFolds) throws Exception {
         SmoteVoteBag bag_classifier = new SmoteVoteBag();
         bag_classifier.setClassifier(classifier);
         String methodName = PropertyUtil.METHOD_NAMES[4][3];
@@ -46,18 +46,16 @@ public class ResampleInBaggingVoteClassification extends BasicClassification {
         validationResult = new double[4];
         ratioes = new double[MyEvaluation.COST_EFFECTIVE_RATIO_STEP];
         for (int randomSeed = 1; randomSeed <= times; randomSeed++) {
-            MyEvaluation eval = evaluate(bag_classifier, randomSeed, "none");
+            MyEvaluation eval = evaluate(bag_classifier, randomSeed, "none", numFolds);
             updateResult(validationResult, eval);
-            updateCostEffective(eval, methodName);
         }
-        writeCostEffective(times);
         endTime = System.currentTimeMillis();
         logger.info("Time:" + (endTime - startTime));
         return getResult("," + methodName, classifier_name, validationResult, times);
     }
 
     public String getRUSVoteBagClassificationResult(Classifier classifier,
-                                                   String classifier_name, int times) throws Exception {
+                                                   String classifier_name, int times, int numFolds) throws Exception {
         RUSVoteBag bag_classifier = new RUSVoteBag();
         bag_classifier.setClassifier(classifier);
         String methodName = PropertyUtil.METHOD_NAMES[4][2];
@@ -68,11 +66,9 @@ public class ResampleInBaggingVoteClassification extends BasicClassification {
         validationResult = new double[MyEvaluation.EVALUATION_INDEX_NUM];
         ratioes = new double[MyEvaluation.COST_EFFECTIVE_RATIO_STEP];
         for (int randomSeed = 1; randomSeed <= times; randomSeed++) {
-            MyEvaluation eval = evaluate(bag_classifier, randomSeed, "none");
+            MyEvaluation eval = evaluate(bag_classifier, randomSeed, "none", numFolds);
             updateResult(validationResult, eval);
-            updateCostEffective(eval, methodName);
         }
-        writeCostEffective(times);
         endTime = System.currentTimeMillis();
         logger.info("Time:" + (endTime - startTime));
         return getResult("," + methodName, classifier_name, validationResult, times);
@@ -81,7 +77,7 @@ public class ResampleInBaggingVoteClassification extends BasicClassification {
 
 
     private String getROSVoteBagClassificationResult(Classifier classifier,
-                                                    String classifier_name, int times) throws Exception {
+                                                    String classifier_name, int times, int numFolds) throws Exception {
         ROSVoteBag bag_classifier = new ROSVoteBag();
         bag_classifier.setClassifier(classifier);
         String methodName = PropertyUtil.METHOD_NAMES[4][1];
@@ -92,11 +88,9 @@ public class ResampleInBaggingVoteClassification extends BasicClassification {
         validationResult = new double[4];
         ratioes = new double[MyEvaluation.COST_EFFECTIVE_RATIO_STEP];
         for (int randomSeed = 1; randomSeed <= times; randomSeed++) {
-            MyEvaluation eval = evaluate(bag_classifier, randomSeed, "none");
+            MyEvaluation eval = evaluate(bag_classifier, randomSeed, "none", numFolds);
             updateResult(validationResult, eval);
-            updateCostEffective(eval, methodName);
         }
-        writeCostEffective(times);
         endTime = System.currentTimeMillis();
         logger.info("Time:" + (endTime - startTime));
         return getResult("," + methodName, classifier_name, validationResult, times);

@@ -1,10 +1,12 @@
 package classification;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import classification.bagging.*;
+import org.apache.log4j.Logger;
 import util.DataStorageUtil;
 import util.PrintUtil;
 import util.PropertyUtil;
@@ -22,6 +24,8 @@ import classification.boosting.BoostingClassification;
 import classification.boosting.ResampleInBoostingClassification;
 
 public class Classification {
+
+    private Logger logger = Logger.getLogger(Classification.class);
 
     Instances data;
     String classifier_name;
@@ -63,6 +67,81 @@ public class Classification {
         }
     }
 
+    //project, classifier_name, sampling_name, ensemble_name, times, numFolds
+    public String predict(String project, String classifier_name, String sampling_name, String ensemble_name, int times, int numFolds)  throws Exception {
+        setClassifier(classifier_name);
+        BasicClassification use_classification = null;
+        String result;
+        DETAIL_NUM = times * 10;
+
+        // row 和 col 为PropertyUtil.METHOD_USE_MAP的下标
+        int row = -1, col = -1;
+        if (ensemble_name.equals("No ensemble")) {
+            // Simple ROS RUS Smote
+            row = 0;
+            if (sampling_name.equals("Simple")) {
+                col = 0;
+                use_classification = new SimpleClassification(data);
+            } else if (sampling_name.equals("ROS")) {
+                col = 1;
+                use_classification = new ResampleSimpleClassification(data);
+            } else if (sampling_name.equals("RUS")) {
+                col = 2;
+                use_classification = new ResampleSimpleClassification(data);
+            } else if (sampling_name.equals("Smote")) {
+                col = 3;
+                use_classification = new ResampleSimpleClassification(data);
+            }
+        } else if (ensemble_name.equals("Bagging")) {
+            // "Bag", "ROSBag", "RUSBag", "SmoteBag"
+            row = 1;
+            if (sampling_name.equals("Simple")) {
+                col = 0;
+                use_classification = new BaggingClassification(data);
+            } else if (sampling_name.equals("ROS")) {
+                col = 1;
+                use_classification = new ResampleInBaggingClassification(data);
+            } else if (sampling_name.equals("RUS")) {
+                col = 2;
+                use_classification = new ResampleInBaggingClassification(data);
+            } else if (sampling_name.equals("Smote")) {
+                col = 3;
+                use_classification = new ResampleInBaggingClassification(data);
+            }
+        } else if (ensemble_name.equals("Boosting")) {
+            // "Boost", "ROSBoost", "RUSBoost", "SmoteBoost"
+            row = 2;
+            if (sampling_name.equals("Simple")) {
+                col = 0;
+                use_classification = new BoostingClassification(data);
+            } else if (sampling_name.equals("ROS")) {
+                col = 1;
+                use_classification = new ResampleInBoostingClassification(data);
+            } else if (sampling_name.equals("RUS")) {
+                col = 2;
+                use_classification = new ResampleInBoostingClassification(data);
+            } else if (sampling_name.equals("Smote")) {
+                col = 3;
+                use_classification = new ResampleInBoostingClassification(data);
+            }
+        }
+        if (row == -1 || col == -1) {
+            throw new Exception("Error in ensemble_name!");
+        }
+        PropertyUtil.METHOD_USE_MAP[row][col] = true;
+        if(DataStorageUtil.method_cost20pbs_skOne_basedOnProject.get(PropertyUtil.METHOD_NAMES[row][col]) == null) {
+            DataStorageUtil.method_cost20pbs_skOne_basedOnProject.put(PropertyUtil.METHOD_NAMES[row][col],
+                    new ArrayList<>());
+        }
+        result = use_classification.classify(classifier, project, classifier_name, times, numFolds).split("\n")[0];
+        PropertyUtil.METHOD_USE_MAP[row][col] = false;
+
+        PrintUtil.printSKOneMap(DataStorageUtil.method_cost20pbs_skOne_basedOnProject, PropertyUtil
+                .CUR_COST_20PB_SK_ONE, 2);
+        return result;
+    }
+        // origin predict
+   /*
     public String predict(String classifier_name_input, String project,
                           int times, Map<Instance, List<Integer>> ins_Loc) throws Exception {
 
@@ -70,37 +149,51 @@ public class Classification {
         String predict_result = project;
         BasicClassification use_classification = null;
         DETAIL_NUM = times * 10;
-        use_classification = new SimpleClassification(data, ins_Loc);
+        use_classification = new SimpleClassification(data);
         predict_result += use_classification.classify(times, classifier, classifier_name);
+        System.out.println(predict_result);
 
-        use_classification = new ResampleSimpleClassification(data, ins_Loc);
+        use_classification = new ResampleSimpleClassification(data);
         predict_result += use_classification.classify(times, classifier, classifier_name);
+        System.out.println(predict_result);
 
-        use_classification = new BaggingClassification(data, ins_Loc);
+        use_classification = new BaggingClassification(data);
         predict_result += use_classification.classify(times, classifier, classifier_name);
+        System.out.println(predict_result);
 
-        use_classification = new ResampleInBaggingClassification(data, ins_Loc);
+        use_classification = new ResampleInBaggingClassification(data);
         predict_result += use_classification.classify(times, classifier, classifier_name);
+        System.out.println(predict_result);
 
-        use_classification = new BoostingClassification(data, ins_Loc);
+        use_classification = new BoostingClassification(data);
         predict_result += use_classification.classify(times, classifier, classifier_name);
+        System.out.println(predict_result);
 
-        use_classification = new ResampleInBoostingClassification(data, ins_Loc);
+        use_classification = new ResampleInBoostingClassification(data);
         predict_result += use_classification.classify(times, classifier, classifier_name);
+        System.out.println(predict_result);
 
-        use_classification = new BaggingMaxClassification(data, ins_Loc);
+        use_classification = new BaggingMaxClassification(data);
         predict_result += use_classification.classify(times, classifier, classifier_name);
+        System.out.println(predict_result);
 
-        use_classification = new ResampleInBaggingMaxClassification(data, ins_Loc);
+        use_classification = new ResampleInBaggingMaxClassification(data);
         predict_result += use_classification.classify(times, classifier, classifier_name);
+        System.out.println(predict_result);
 
-        use_classification = new BaggingVoteClassification(data, ins_Loc);
+        use_classification = new BaggingVoteClassification(data);
         predict_result += use_classification.classify(times, classifier, classifier_name);
+        System.out.println(predict_result);
 
-        use_classification = new ResampleInBaggingVoteClassification(data, ins_Loc);
+        use_classification = new ResampleInBaggingVoteClassification(data);
         predict_result += use_classification.classify(times, classifier, classifier_name);
+        System.out.println(predict_result);
+
         PrintUtil.printSKOneMap(DataStorageUtil.method_cost20pbs_skOne_basedOnProject, PropertyUtil
                 .CUR_COST_20PB_SK_ONE, 2);
+        System.out.println(predict_result);
         return predict_result;
     }
+    */
+
 }

@@ -17,11 +17,11 @@ import java.util.Map;
 public class BaggingVoteClassification extends BasicClassification {
     public static Logger logger = Logger.getLogger(BaggingVoteClassification.class);
 
-    public BaggingVoteClassification(Instances data, Map<Instance, List<Integer>> ins_Loc) {
-        super(data, ins_Loc);
+    public BaggingVoteClassification(Instances data) {
+        super(data);
     }
 
-    public String getClassificationResult(Classifier classifier, String classifier_name, int times) throws Exception {
+    public String getClassificationResult(Classifier classifier, String classifier_name, int times, int numFolds) throws Exception {
         if (!PropertyUtil.METHOD_USE_MAP[4][0]) {
             return "";
         }
@@ -35,11 +35,9 @@ public class BaggingVoteClassification extends BasicClassification {
         validationResult = new double[4];
         ratioes = new double[MyEvaluation.COST_EFFECTIVE_RATIO_STEP];
         for (int randomSeed = 1; randomSeed <= times; randomSeed++) {
-            MyEvaluation eval = evaluate(bag_classifier, randomSeed, "none");
+            MyEvaluation eval = evaluate(bag_classifier, randomSeed, "none", numFolds);
             updateResult(validationResult, eval);
-            updateCostEffective(eval, methodName);
         }
-        writeCostEffective(times);
         endTime = System.currentTimeMillis();
         logger.info("Time:" + (endTime - startTime));
         return getResult("," + methodName, classifier_name, validationResult, times);

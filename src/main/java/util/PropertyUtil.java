@@ -40,11 +40,20 @@ public class PropertyUtil {
             {"Boost", "ROSBoost", "RUSBoost", "SmoteBoost"},
             {"MaxBag", "ROSMaxBag", "RUSMaxBag", "SmoteMaxBag"},
             {"VoteBag", "ROSVoteBag", "RUSVoteBag", "SmoteVoteBag"}};
+    // gq modify
+    /*
     public static boolean[][] METHOD_USE_MAP = {{false, false, false, false},
             {false, false, false, false},
             {false, false, false, false},
             {false, false, true, false},
             {false, false, true, false}};
+     */
+    public static boolean[][] METHOD_USE_MAP = {
+            {false, false, false, false},
+            {false, false, false, false},
+            {false, false, false, false},
+            {false, false, false, false}
+    };
     public static SQLConnection sqlL = null;
     public static Statement stmt = null;
     public static ResultSet resultSet = null;

@@ -17,13 +17,17 @@ import java.util.*;
 public class DataProcessUtilTest {
 
     public void covertAllDetailFileToSK_ESDFile() throws Exception {
+        /*
         DataProcessUtil.covertAllDetailFileToSK_ESDFile("testCovert", "SK_ESD",
                 Classification.DETAIL_NUM, PropertyUtil.METHOD_NAMES, Classification.EVALUATION_NAMES);
+    */
     }
 
     public void covertDetailFileToSK_ESDFile() throws Exception {
+        /*
         DataProcessUtil.covertDetailFileToSK_ESDFile("OriginDetailFiles/j48_MyAnt_DETAIL", "J_SK_ESD",
                 Classification.DETAIL_NUM, PropertyUtil.METHOD_NAMES, Classification.EVALUATION_NAMES);
+         */
     }
 
     @Test
