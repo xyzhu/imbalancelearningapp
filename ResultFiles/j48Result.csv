@@ -1,0 +1,2 @@
+project, method, recall-1, precision-1, fMeasure-1, auc
+MyAnt,Simple, 68.36, 70.95, 69.58,85.92
