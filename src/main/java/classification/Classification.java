@@ -129,15 +129,8 @@ public class Classification {
             throw new Exception("Error in ensemble_name!");
         }
         PropertyUtil.METHOD_USE_MAP[row][col] = true;
-        if(DataStorageUtil.method_cost20pbs_skOne_basedOnProject.get(PropertyUtil.METHOD_NAMES[row][col]) == null) {
-            DataStorageUtil.method_cost20pbs_skOne_basedOnProject.put(PropertyUtil.METHOD_NAMES[row][col],
-                    new ArrayList<>());
-        }
         result = use_classification.classify(classifier, project, classifier_name, times, numFolds).split("\n")[0];
         PropertyUtil.METHOD_USE_MAP[row][col] = false;
-
-        PrintUtil.printSKOneMap(DataStorageUtil.method_cost20pbs_skOne_basedOnProject, PropertyUtil
-                .CUR_COST_20PB_SK_ONE, 2);
         return result;
     }
         // origin predict

@@ -47,7 +47,6 @@ public class ResampleInBoostingClassification extends BasicClassification {
         String methodName = PropertyUtil.METHOD_NAMES[2][3];
         logger.info(methodName);
         PrintUtil.appendResult(methodName, PropertyUtil.CUR_DETAIL_FILENAME);
-        PrintUtil.appendResult(methodName, PropertyUtil.CUR_COST_EFFECTIVE_RECORD);
         startTime = System.currentTimeMillis();
         validationResult = new double[4];
         ratioes = new double[MyEvaluation.COST_EFFECTIVE_RATIO_STEP];
@@ -67,7 +66,6 @@ public class ResampleInBoostingClassification extends BasicClassification {
         String methodName = PropertyUtil.METHOD_NAMES[2][2];
         logger.info(methodName);
         PrintUtil.appendResult(methodName, PropertyUtil.CUR_DETAIL_FILENAME);
-        PrintUtil.appendResult(methodName, PropertyUtil.CUR_COST_EFFECTIVE_RECORD);
         boost_classifier.setClassifier(classifier);
         boost_classifier.setUseResampling(true);
         startTime = System.currentTimeMillis();
@@ -88,7 +86,6 @@ public class ResampleInBoostingClassification extends BasicClassification {
         OverBoosting boost_classifier = new OverBoosting();
         String methodName = PropertyUtil.METHOD_NAMES[2][1];
         logger.info(methodName);
-        PrintUtil.appendResult(methodName, PropertyUtil.CUR_COST_EFFECTIVE_RECORD);
         PrintUtil.appendResult(methodName, PropertyUtil.CUR_DETAIL_FILENAME);
         boost_classifier.setClassifier(classifier);
         boost_classifier.setUseResampling(true);

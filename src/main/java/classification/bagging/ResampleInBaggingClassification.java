@@ -45,7 +45,7 @@ public class ResampleInBaggingClassification extends BasicClassification {
         String methodName = PropertyUtil.METHOD_NAMES[1][3];
         logger.info(methodName);
         PrintUtil.appendResult(methodName, PropertyUtil.CUR_DETAIL_FILENAME);
-        PrintUtil.appendResult(methodName, PropertyUtil.CUR_COST_EFFECTIVE_RECORD);
+
         startTime = System.currentTimeMillis();
         validationResult = new double[4];
         ratioes = new double[MyEvaluation.COST_EFFECTIVE_RATIO_STEP];
@@ -65,7 +65,7 @@ public class ResampleInBaggingClassification extends BasicClassification {
         String methodName = PropertyUtil.METHOD_NAMES[1][2];
         logger.info(methodName);
         PrintUtil.appendResult(methodName, PropertyUtil.CUR_DETAIL_FILENAME);
-        PrintUtil.appendResult(methodName, PropertyUtil.CUR_COST_EFFECTIVE_RECORD);
+
         startTime = System.currentTimeMillis();
         validationResult = new double[MyEvaluation.EVALUATION_INDEX_NUM];
         ratioes = new double[MyEvaluation.COST_EFFECTIVE_RATIO_STEP];
@@ -87,7 +87,7 @@ public class ResampleInBaggingClassification extends BasicClassification {
         String methodName = PropertyUtil.METHOD_NAMES[1][1];
         logger.info(methodName);
         PrintUtil.appendResult(methodName, PropertyUtil.CUR_DETAIL_FILENAME);
-        PrintUtil.appendResult(methodName, PropertyUtil.CUR_COST_EFFECTIVE_RECORD);
+
         startTime = System.currentTimeMillis();
         validationResult = new double[4];
         ratioes = new double[MyEvaluation.COST_EFFECTIVE_RATIO_STEP];

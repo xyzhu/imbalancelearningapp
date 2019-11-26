@@ -41,9 +41,7 @@ public class SimpleFrame extends JFrame{
     private int times;
     private List<List<String>> results;
     private Instances data;
-    private String output_file_name;
     private int tableRows;
-    private boolean calculateCost;
 
     public SimpleFrame() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -239,12 +237,7 @@ public class SimpleFrame extends JFrame{
 
 
         // 初始化设置
-        calculateCost = true;
-        PropertyUtil.CALCULATION_COST = calculateCost;
-        PropertyUtil.CALCULATION_FILE_TO_HUNK_COST = false;
-        logger.info("Calculate cost = " + calculateCost);
         logger.info("Resample ratio = " + PropertyUtil.SAMPLE_RATIO);
-        logger.info("Calculate cost from file to hunk is :" + PropertyUtil.CALCULATION_FILE_TO_HUNK_COST);
         FileUtil.checkFolder();
 
 
@@ -262,7 +255,7 @@ public class SimpleFrame extends JFrame{
         errLabel.setText("请选择一个数据集");
 
         JFileChooser chooser = new JFileChooser();
-        String defaultDirectory = "FileChange/Arffs_old_paper/";
+        String defaultDirectory = "Arffs_old_paper/";
 
 
         // 设置默认文件夹
@@ -281,7 +274,6 @@ public class SimpleFrame extends JFrame{
             filePath = file.getAbsolutePath();
             project = file.getName().split(".arf")[0];
             dialog.setText(file.getName());
-            logger.info(filePath + " " + project);
         }
         if(filePath == null || filePath.length() == 0) {
             errLabel.setVisible(true);
@@ -448,54 +440,13 @@ public class SimpleFrame extends JFrame{
     }
 
     private void initProperty(String classifier_name) throws Exception {
-        String measure_name = "project, method, recall-1, precision-1, fMeasure-1, auc";
-
-        output_file_name = PropertyUtil.RESULT_FOLDER_PATH + PropertyUtil.FILE_PATH_DELIMITER + classifier_name + "Result.csv";
-        File outFile = new File(output_file_name);
-        if (outFile.exists()) {
-            outFile.delete();
-        }
-        outFile.createNewFile();
-        PrintUtil.saveResult(measure_name, output_file_name);
-
         PropertyUtil.CUR_DETAIL_FILENAME = PropertyUtil.DETAIL_FOLDER_PATH +
                 PropertyUtil.FILE_PATH_DELIMITER + classifier_name + "_" + project + "_" + "DETAIL";
-        PropertyUtil.CUR_COST_EFFECTIVE_RECORD = PropertyUtil.COST_FOLDER_PATH + PropertyUtil
-                .FILE_PATH_DELIMITER + classifier_name + "_" + project + "_" + "COST";
-        PropertyUtil.CUR_COST_20PB_SK_ONE = PropertyUtil.COST_FOLDER_PATH + PropertyUtil
-                .FILE_PATH_DELIMITER + "COST20Pb_" + classifier_name + "_" + project + "_DETAIL.csv";
-        PropertyUtil.CUR_DATABASE = project;
         File cur_detail_file = new File(PropertyUtil.CUR_DETAIL_FILENAME);
         cur_detail_file.delete();
         cur_detail_file.createNewFile();
-        File cur_cost_file = new File(PropertyUtil.CUR_COST_EFFECTIVE_RECORD);
-        cur_cost_file.delete();
-        cur_detail_file.createNewFile();
-        File cur_cost20pb_file = new File(PropertyUtil.CUR_COST_20PB_SK_ONE);
-        cur_cost20pb_file.delete();
-        cur_cost20pb_file.createNewFile();
         logger.info(project);
         logger.info(classifier_name + " for detail");
-
-
-        if (PropertyUtil.CALCULATION_COST) {
-            if (PropertyUtil.CALCULATION_FILE_TO_HUNK_COST) {
-                PropertyUtil.sqlL = new SQLConnection(PropertyUtil.CUR_DATABASE);
-                PropertyUtil.stmt = PropertyUtil.sqlL.getStmt();
-                PropertyUtil.COMMITID_FILEID_CHANGEDLINE_ISBUGS = new LinkedHashMap<>();
-                PropertyUtil.TOTAL_ACTUAL_HUNK_BUG_NUM = 0;
-                PropertyUtil.TOTAL_CHANGED_HUNK_LINE_NUM = 0;
-            }
-            DataStorageUtil.method_cost20pbs_skOne_basedOnProject = new LinkedHashMap<>();
-            for (int j = 0; j < PropertyUtil.METHOD_USE_MAP.length; j++) {
-                for (int k = 0; k < PropertyUtil.METHOD_USE_MAP[0].length; k++) {
-                    if (PropertyUtil.METHOD_USE_MAP[j][k]) {
-                        DataStorageUtil.method_cost20pbs_skOne_basedOnProject.put(PropertyUtil.METHOD_NAMES[j][k],
-                                new ArrayList<>());
-                    }
-                }
-            }
-        }
     }
 
 
@@ -503,7 +454,6 @@ public class SimpleFrame extends JFrame{
         String[] predict_result;
         Classification classification = new Classification(data);
         String temp = project + classification.predict(project, classifier_name, sampling_name, ensemble_name, times, numFolds);
-        PrintUtil.appendResult(temp, output_file_name);
         predict_result = temp.split(",");
         return predict_result;
     }

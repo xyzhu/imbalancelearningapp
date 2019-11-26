@@ -40,7 +40,7 @@ public class ResampleSimpleClassification extends BasicClassification {
         logger.info(methodName);
         validationResult = new double[4];
         PrintUtil.appendResult(methodName, PropertyUtil.CUR_DETAIL_FILENAME);
-        PrintUtil.appendResult(methodName, PropertyUtil.CUR_COST_EFFECTIVE_RECORD);
+
         startTime = System.currentTimeMillis();
         ratioes = new double[MyEvaluation.COST_EFFECTIVE_RATIO_STEP];
         for (int randomSeed = 1; randomSeed <= times; randomSeed++) {
@@ -56,7 +56,7 @@ public class ResampleSimpleClassification extends BasicClassification {
         String methodName = PropertyUtil.METHOD_NAMES[0][2];
         validationResult = new double[4];
         PrintUtil.appendResult(methodName, PropertyUtil.CUR_DETAIL_FILENAME);
-        PrintUtil.appendResult(methodName, PropertyUtil.CUR_COST_EFFECTIVE_RECORD);
+
         startTime = System.currentTimeMillis();
         ratioes = new double[MyEvaluation.COST_EFFECTIVE_RATIO_STEP];
         for (int randomSeed = 1; randomSeed <= times; randomSeed++) {
@@ -73,7 +73,7 @@ public class ResampleSimpleClassification extends BasicClassification {
         logger.info(methodName);
         validationResult = new double[4];
         PrintUtil.appendResult(methodName, PropertyUtil.CUR_DETAIL_FILENAME);
-        PrintUtil.appendResult(methodName, PropertyUtil.CUR_COST_EFFECTIVE_RECORD);
+
         startTime = System.currentTimeMillis();
         ratioes = new double[MyEvaluation.COST_EFFECTIVE_RATIO_STEP];
         for (int randomSeed = 1; randomSeed <= times; randomSeed++) {
