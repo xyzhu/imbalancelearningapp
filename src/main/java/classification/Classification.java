@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import classification.bagging.*;
+import classification.boosting.ResampleOutBoostingClassification;
 import org.apache.log4j.Logger;
 import util.DataStorageUtil;
 import util.PrintUtil;
@@ -68,7 +69,7 @@ public class Classification {
     }
 
     //project, classifier_name, sampling_name, ensemble_name, times, numFolds
-    public String predict(String project, String classifier_name, String sampling_name, String ensemble_name, int times, int numFolds)  throws Exception {
+    public String predict(String project, String classifier_name, String sampling_name, String ensemble_name, int times, int numFolds, boolean isIn)  throws Exception {
         setClassifier(classifier_name);
         BasicClassification use_classification = null;
         String result;
@@ -93,36 +94,50 @@ public class Classification {
                 use_classification = new ResampleSimpleClassification(data);
             }
         } else if (ensemble_name.equals("Bagging")) {
-            // "Bag", "ROSBag", "RUSBag", "SmoteBag"
+            // row = 1 "Bag", "ROSBag", "RUSBag", "SmoteBag"
+            // row = 5 {"Bag", "ROSOutBag", "RUSOutBag", "SmoteOutBag"},
             row = 1;
             if (sampling_name.equals("Simple")) {
                 col = 0;
                 use_classification = new BaggingClassification(data);
-            } else if (sampling_name.equals("ROS")) {
-                col = 1;
-                use_classification = new ResampleInBaggingClassification(data);
-            } else if (sampling_name.equals("RUS")) {
-                col = 2;
-                use_classification = new ResampleInBaggingClassification(data);
-            } else if (sampling_name.equals("Smote")) {
-                col = 3;
-                use_classification = new ResampleInBaggingClassification(data);
+            } else {
+                if(isIn) {
+                    use_classification = new ResampleInBaggingClassification(data);
+                } else {
+                    row = 5;
+                    use_classification = new ResampleOutBaggingClassification(data);
+                }
+
+                if (sampling_name.equals("ROS")){
+                    col = 1;
+                } else if (sampling_name.equals("RUS")) {
+                    col = 2;
+                } else if (sampling_name.equals("Smote")) {
+                    col = 3;
+                }
             }
         } else if (ensemble_name.equals("Boosting")) {
-            // "Boost", "ROSBoost", "RUSBoost", "SmoteBoost"
+            // row = 2 "Boost", "ROSBoost", "RUSBoost", "SmoteBoost"
+            // row = 6 {"Boost", "ROSOutBoost", "RUSOutBoost", "SmoteOutBoost"},
             row = 2;
             if (sampling_name.equals("Simple")) {
                 col = 0;
                 use_classification = new BoostingClassification(data);
-            } else if (sampling_name.equals("ROS")) {
-                col = 1;
-                use_classification = new ResampleInBoostingClassification(data);
-            } else if (sampling_name.equals("RUS")) {
-                col = 2;
-                use_classification = new ResampleInBoostingClassification(data);
-            } else if (sampling_name.equals("Smote")) {
-                col = 3;
-                use_classification = new ResampleInBoostingClassification(data);
+            } else {
+                if(isIn) {
+                    use_classification = new ResampleInBoostingClassification(data);
+                } else {
+                    row = 6;
+                    use_classification = new ResampleOutBoostingClassification(data);
+                }
+
+                if (sampling_name.equals("ROS")) {
+                    col = 1;
+                } else if (sampling_name.equals("RUS")) {
+                    col = 2;
+                } else if (sampling_name.equals("Smote")) {
+                    col = 3;
+                }
             }
         }
         if (row == -1 || col == -1) {

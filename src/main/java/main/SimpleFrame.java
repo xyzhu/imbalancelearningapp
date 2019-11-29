@@ -30,6 +30,7 @@ public class SimpleFrame extends JFrame{
     private JButton submit, clear;
     private JTextField numFolds_text, times_text;
     private JPanel panel;
+    private JComboBox<String> in_out_comboBox;
 
     private String project;
     private String filePath;
@@ -37,11 +38,14 @@ public class SimpleFrame extends JFrame{
     private String classifier_name;
     private String sampling_name;
     private String ensemble_name;
+    private String in_out;
+    private boolean isIn;
     private int numFolds;
     private int times;
     private List<List<String>> results;
     private Instances data;
     private int tableRows;
+
 
     public SimpleFrame() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -167,8 +171,15 @@ public class SimpleFrame extends JFrame{
             public void itemStateChanged(ItemEvent e) {
                 // 只处理选中的状态
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    logger.info("Sampling 选中: " + sampling_comboBox.getSelectedItem());
                     sampling_name = (String)sampling_comboBox.getSelectedItem();
+                    logger.info("Sampling 选中: " + sampling_name);
+                    if(ensemble_name.equals("Bagging") && !sampling_name.equals("Simple")) {
+                        in_out_comboBox.setVisible(true);
+                    } else if(ensemble_name.equals("Boosting") && !sampling_name.equals("Simple")) {
+                        in_out_comboBox.setVisible(true);
+                    } else {
+                        in_out_comboBox.setVisible(false);
+                    }
                 }
             }
         });
@@ -177,6 +188,30 @@ public class SimpleFrame extends JFrame{
         sampling_comboBox.setSelectedIndex(0);
         sampling_comboBox.setBounds(110, 110, 165, 20);
         panel.add(sampling_comboBox);
+
+        // 设置In Out多选框
+        in_out = "In";
+        isIn = true;
+        String[] in_out_list = new String[]{"In", "Out"};
+        in_out_comboBox = new JComboBox<>(in_out_list);
+
+        // 添加in_out_comboBox选中状态改变的监听器
+        in_out_comboBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                // 只处理选中的状态
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    in_out = (String)in_out_comboBox.getSelectedItem();
+                    logger.info("in_out_comboBox 选中: " + in_out);
+                }
+            }
+        });
+
+        // 设置 in_out 默认选中的条目
+        in_out_comboBox.setSelectedIndex(0);
+        in_out_comboBox.setBounds(280, 140, 100, 20);
+        in_out_comboBox.setVisible(false);
+        panel.add(in_out_comboBox);
 
         // Ensemble
         JLabel ensemble_label = new JLabel("Ensemble:");
@@ -195,6 +230,13 @@ public class SimpleFrame extends JFrame{
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     logger.info("Ensemble 选中: " + ensemble_comboBox.getSelectedItem());
                     ensemble_name = (String)ensemble_comboBox.getSelectedItem();
+                    if(ensemble_name.equals("Bagging") && !sampling_name.equals("Simple")) {
+                        in_out_comboBox.setVisible(true);
+                    } else if(ensemble_name.equals("Boosting") && !sampling_name.equals("Simple")) {
+                        in_out_comboBox.setVisible(true);
+                    } else {
+                        in_out_comboBox.setVisible(false);
+                    }
                 }
             }
         });
@@ -203,6 +245,7 @@ public class SimpleFrame extends JFrame{
         ensemble_comboBox.setSelectedIndex(2);
         ensemble_comboBox.setBounds(110, 140, 165, 20);
         panel.add(ensemble_comboBox);
+
 
         // 确定button
         submit = new JButton("确定");
@@ -225,13 +268,13 @@ public class SimpleFrame extends JFrame{
         String[] titles = {"project", "method", "recall-1", "precision-1", "fMeasure-1", "auc"};
         results = new ArrayList<>();
         // 设置初始table大小
-        tableRows = 12;
+        tableRows = 13;
         DefaultTableModel model = new DefaultTableModel(new String[tableRows][titles.length], titles);
         for(int j = 0; j < titles.length; j++) {
             model.setValueAt(titles[j], 0, j);
         }
         JTable table = new JTable(model);
-        table.setBounds(10, 200, screenWidth / 2 - 20, screenHeight / 4 - 20);
+        table.setBounds(10, 200, screenWidth / 2 - 20, screenHeight / 4 - 10);
         //components.add(table);
         panel.add(table);
 
@@ -453,7 +496,8 @@ public class SimpleFrame extends JFrame{
     private String[] getClassificationResult() throws Exception{
         String[] predict_result;
         Classification classification = new Classification(data);
-        String temp = project + classification.predict(project, classifier_name, sampling_name, ensemble_name, times, numFolds);
+        isIn = in_out.equals("In") ? true : false;
+        String temp = project + classification.predict(project, classifier_name, sampling_name, ensemble_name, times, numFolds, isIn);
         predict_result = temp.split(",");
         return predict_result;
     }

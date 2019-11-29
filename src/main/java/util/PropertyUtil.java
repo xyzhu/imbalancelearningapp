@@ -35,11 +35,15 @@ public class PropertyUtil {
             "MySynapse", "MyTomcat", "MyVoldemort"};
     //public static String[] PROJECTS = {"MyItextpdf", "MyJedit", "MyLucene", "MySynapse", "MyTomcat", "MyVoldemort"};
     //Be careful to change!
-    public static final String[][] METHOD_NAMES = {{"Simple", "ROS", "RUS", "Smote"},
-            {"Bag", "ROSBag", "RUSBag", "SmoteBag"},
-            {"Boost", "ROSBoost", "RUSBoost", "SmoteBoost"},
+    public static final String[][] METHOD_NAMES = {
+            {"Simple", "ROS", "RUS", "Smote"},
+            {"Bag", "ROSInBag", "RUSInBag", "SmoteInBag"},
+            {"Boost", "ROSInBoost", "RUSInBoost", "SmoteInBoost"},
             {"MaxBag", "ROSMaxBag", "RUSMaxBag", "SmoteMaxBag"},
-            {"VoteBag", "ROSVoteBag", "RUSVoteBag", "SmoteVoteBag"}};
+            {"VoteBag", "ROSVoteBag", "RUSVoteBag", "SmoteVoteBag"},
+            {"Bag", "ROSOutBag", "RUSOutBag", "SmoteOutBag"},
+            {"Boost", "ROSOutBoost", "RUSOutBoost", "SmoteOutBoost"},
+    };
     // gq modify
     /*
     public static boolean[][] METHOD_USE_MAP = {{false, false, false, false},
@@ -52,7 +56,10 @@ public class PropertyUtil {
             {false, false, false, false},
             {false, false, false, false},
             {false, false, false, false},
-            {false, false, false, false}
+            {false, false, false, false},
+            {false, false, false, false},
+            {false, false, false, false},
+            {false, false, false, false},
     };
     public static SQLConnection sqlL = null;
     public static Statement stmt = null;

@@ -1,38 +1,34 @@
 package classification.bagging;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
-import classification.ResampleSimpleClassification;
-import org.apache.log4j.Logger;
-import util.PrintUtil;
-import util.PropertyUtil;
-import weka.classifiers.Classifier;
-import weka.core.Instance;
-import weka.core.Instances;
 import Classifier.OverBagging;
 import Classifier.SmoteBagging;
 import Classifier.UnderBagging;
 import classification.BasicClassification;
+import classification.ResampleSimpleClassification;
 import evaluation.MyEvaluation;
+import org.apache.log4j.Logger;
+import util.PrintUtil;
+import util.PropertyUtil;
+import weka.classifiers.Classifier;
+import weka.classifiers.meta.Bagging;
+import weka.core.Instances;
 
-public class ResampleInBaggingClassification extends BasicClassification {
-    public static Logger logger = Logger.getLogger(ResampleInBaggingClassification.class);
+public class ResampleOutBaggingClassification extends BasicClassification {
+    public static Logger logger = Logger.getLogger(ResampleOutBaggingClassification.class);
 
-    public ResampleInBaggingClassification(Instances data) {
+    public ResampleOutBaggingClassification(Instances data) {
         super(data);
     }
 
     public String getClassificationResult(Classifier classifier, String classifier_name, int times, int numFolds) throws Exception {
         String predictResult = "";
-        if (PropertyUtil.METHOD_USE_MAP[1][1]) {
+        if (PropertyUtil.METHOD_USE_MAP[5][1]) {
             predictResult += getOverBagClassificationResult(classifier, classifier_name, times, numFolds);
         }
-        if (PropertyUtil.METHOD_USE_MAP[1][2]) {
+        if (PropertyUtil.METHOD_USE_MAP[5][2]) {
             predictResult += getUnderBagClassificationResult(classifier, classifier_name, times, numFolds);
         }
-        if (PropertyUtil.METHOD_USE_MAP[1][3]) {
+        if (PropertyUtil.METHOD_USE_MAP[5][3]) {
             predictResult += getSmoteBagClassificationResult(classifier, classifier_name, times, numFolds);
         }
         return predictResult;
@@ -40,9 +36,9 @@ public class ResampleInBaggingClassification extends BasicClassification {
 
     public String getSmoteBagClassificationResult(Classifier classifier,
                                                   String classifier_name, int times, int numFolds) throws Exception {
-        SmoteBagging bag_classifier = new SmoteBagging();
+        Bagging bag_classifier = new Bagging();
         bag_classifier.setClassifier(classifier);
-        String methodName = PropertyUtil.METHOD_NAMES[1][3];
+        String methodName = PropertyUtil.METHOD_NAMES[5][3];
         logger.info(methodName);
         PrintUtil.appendResult(methodName, PropertyUtil.CUR_DETAIL_FILENAME);
 
@@ -50,7 +46,7 @@ public class ResampleInBaggingClassification extends BasicClassification {
         validationResult = new double[4];
         ratioes = new double[MyEvaluation.COST_EFFECTIVE_RATIO_STEP];
         for (int randomSeed = 1; randomSeed <= times; randomSeed++) {
-            MyEvaluation eval = evaluate(bag_classifier, randomSeed, "none", numFolds);
+            MyEvaluation eval = evaluate(bag_classifier, randomSeed, "smote", numFolds);
             updateResult(validationResult, eval);
         }
         endTime = System.currentTimeMillis();
@@ -60,9 +56,9 @@ public class ResampleInBaggingClassification extends BasicClassification {
 
     public String getUnderBagClassificationResult(Classifier classifier,
                                                   String classifier_name, int times, int numFolds) throws Exception {
-        UnderBagging bag_classifier = new UnderBagging();
+        Bagging bag_classifier = new Bagging();
         bag_classifier.setClassifier(classifier);
-        String methodName = PropertyUtil.METHOD_NAMES[1][2];
+        String methodName = PropertyUtil.METHOD_NAMES[5][2];
         logger.info(methodName);
         PrintUtil.appendResult(methodName, PropertyUtil.CUR_DETAIL_FILENAME);
 
@@ -70,7 +66,7 @@ public class ResampleInBaggingClassification extends BasicClassification {
         validationResult = new double[MyEvaluation.EVALUATION_INDEX_NUM];
         ratioes = new double[MyEvaluation.COST_EFFECTIVE_RATIO_STEP];
         for (int randomSeed = 1; randomSeed <= times; randomSeed++) {
-            MyEvaluation eval = evaluate(bag_classifier, randomSeed, "none", numFolds);
+            MyEvaluation eval = evaluate(bag_classifier, randomSeed, "under", numFolds);
             updateResult(validationResult, eval);
         }
         endTime = System.currentTimeMillis();
@@ -82,9 +78,9 @@ public class ResampleInBaggingClassification extends BasicClassification {
 
     private String getOverBagClassificationResult(Classifier classifier,
                                                   String classifier_name, int times, int numFolds) throws Exception {
-        OverBagging bag_classifier = new OverBagging();
+        Bagging bag_classifier = new Bagging();
         bag_classifier.setClassifier(classifier);
-        String methodName = PropertyUtil.METHOD_NAMES[1][1];
+        String methodName = PropertyUtil.METHOD_NAMES[5][1];
         logger.info(methodName);
         PrintUtil.appendResult(methodName, PropertyUtil.CUR_DETAIL_FILENAME);
 
@@ -92,7 +88,7 @@ public class ResampleInBaggingClassification extends BasicClassification {
         validationResult = new double[4];
         ratioes = new double[MyEvaluation.COST_EFFECTIVE_RATIO_STEP];
         for (int randomSeed = 1; randomSeed <= times; randomSeed++) {
-            MyEvaluation eval = evaluate(bag_classifier, randomSeed, "none", numFolds);
+            MyEvaluation eval = evaluate(bag_classifier, randomSeed, "over", numFolds);
             updateResult(validationResult, eval);
         }
         endTime = System.currentTimeMillis();

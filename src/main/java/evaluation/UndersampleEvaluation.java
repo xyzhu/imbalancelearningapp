@@ -40,7 +40,7 @@ public class UndersampleEvaluation extends MyEvaluation {
             spreadsubsample.setInputFormat(train);
             spreadsubsample.setDistributionSpread(1);// set the ratio of the
             // major class sample to
-            // the minor clas
+            // the minor class
             train = Filter.useFilter(train, spreadsubsample);
 
             setPriors(train);
